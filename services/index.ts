@@ -15,9 +15,9 @@ export interface RequestOptions extends Omit<RequestInit, "method" | "body"> {
 }
 
 export class WebServices {
-  private subBaseUrl?: string;
-  constructor(subBaseUrl?: string) {
-    this.subBaseUrl = subBaseUrl;
+  private path?: string;
+  constructor(path?: string) {
+    this.path = path;
   }
 
   private buildQueryString(params?: Record<string, any>): string {
@@ -36,7 +36,7 @@ export class WebServices {
     options: RequestOptions = {},
   ): Promise<RequestResult<T>> {
     const { params, body, headers = {}, withAuth = true, ...rest } = options;
-    const fullUrl = `${process.env.BASE_API_URL}${this.subBaseUrl || ""}${url}${this.buildQueryString(params)}`;
+    const fullUrl = `${process.env.BASE_API_URL}${this.path || ""}${url}${this.buildQueryString(params)}`;
 
     const normalizedHeaders = new Headers(headers);
 
