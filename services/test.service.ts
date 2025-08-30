@@ -1,4 +1,4 @@
-import { WebServices } from '.';
+import { WebServices } from './index.service';
 
 class TestServices {
   private webService = new WebServices('/todos');
